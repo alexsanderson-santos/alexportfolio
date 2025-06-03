@@ -19,7 +19,8 @@ import {
   Menu,
   X,
   Sun,
-  Moon
+  Moon,
+  Clock
 } from 'lucide-react'
 import './App.css'
 
@@ -74,6 +75,7 @@ function App() {
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'publications', label: 'Publications' },
     { id: 'education', label: 'Education' },
     { id: 'contact', label: 'Contact' }
   ]
@@ -283,6 +285,20 @@ function App() {
       ],
       image: pipelineSchedulerImg,
       technologies: ['Ansible', 'Jenkins', 'AWS', 'Configuration Management']
+    }
+  ]
+
+  // Publications data
+  const publications = [
+    {
+      title: 'Artificial Intelligence in DevOps and Cloud Computing: transforming business strategies',
+      date: '03 June 2025',
+      readTime: '15 min',
+      publisher: 'Alter Solutions',
+      url: 'https://www.alter-solutions.com/articles/artificial-intelligence-devops-cloud-computing',
+      description: 'An in-depth exploration of how the integration of AI with DevOps practices and Cloud Computing environments is creating new strategic opportunities for companies, enabling greater efficiency, scalability and innovation.',
+      topics: ['Cloud Computing', 'Artificial Intelligence', 'DevOps', 'Business Strategy'],
+      abstract: 'This article explores how the synergy between AI, DevOps and Cloud Computing is creating new strategic opportunities for companies of all sizes. It analyzes the impacts of this integration, highlighting concrete benefits, implementation challenges and future trends that will shape the market in the coming years.'
     }
   ]
 
@@ -655,6 +671,89 @@ function App() {
                         />
                       </div>
                     </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Publications Section */}
+      <section id="publications" className="py-16 px-4">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Publications</h2>
+            <div className="space-y-6">
+              {publications.map((publication, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <CardTitle className="text-xl mb-2 leading-tight">
+                            {publication.title}
+                          </CardTitle>
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-3">
+                            <div className="flex items-center gap-1">
+                              <Calendar size={16} />
+                              {publication.date}
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Clock size={16} />
+                              {publication.readTime}
+                            </div>
+                            <div className="font-medium text-primary">
+                              {publication.publisher}
+                            </div>
+                          </div>
+                        </div>
+                        <Button asChild variant="outline" size="sm">
+                          <a 
+                            href={publication.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2"
+                          >
+                            <ExternalLink size={16} />
+                            Read Article
+                          </a>
+                        </Button>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-base mb-4 leading-relaxed">
+                        {publication.description}
+                      </CardDescription>
+                      <div className="mb-4">
+                        <h4 className="font-semibold mb-2">Abstract:</h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {publication.abstract}
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-2">Topics:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {publication.topics.map((topic, topicIndex) => (
+                            <Badge key={topicIndex} variant="secondary" className="text-xs">
+                              {topic}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
                   </Card>
                 </motion.div>
               ))}
