@@ -298,7 +298,7 @@ function App() {
           title: 'DevOps Engineer',
           company: 'Techne Engineering Systems',
           period: '06/2019 - 01/2021',
-          location: 'Portugal',
+          location: 'Brazil',
           achievements: [
             'Design and deploy microservices on AWS using container orchestration platforms like Kubernetes (EKS) to ensure scalability and resilience.',
             'Automate the provisioning and management of microservice infrastructure with Terraform for consistency and repeatability.',
